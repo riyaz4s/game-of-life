@@ -1,0 +1,10 @@
+
+
+{
+  "watch": ["src", "server"],
+  "ignore": ["src/**/*.test.ts"],
+  "ext": "ts,js,json",
+  "exec": "npm run build:dev && npm run start",
+  "legacyWatch": true,
+  "delay": 1500
+}
