@@ -1,39 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
+import { IObjectType, safeGet } from "../utils/helper";
 import { Cell } from "./cell";
 
-interface BoardProps {
+interface IBoardProps {
   row: number,
   column: number,
+  selectedStates: IObjectType,
+  updateLivingStatus: (living: boolean, i: number, j: number) => void 
 }
-export const Board: React.FC<BoardProps> = ({ row = 4, column = 4 }) => {
-  const getMatrixIndexWithStatus = (living: boolean, i: number, j: number): void => {
-    const result = {
-      living,
-      i,
-      j
-    }
-    console.log(result);
-  }
-  return <React.Fragment>
-    {!isNaN(column * row) && (<div className="board-container">
+
+export const Board: React.FC<IBoardProps> = ({ row, column, selectedStates, updateLivingStatus }) => {
+  return <div className="board-container">
       {
         <div className="board-container__board-column">
-          {[...Array(column)].map((el, i) => {
-            return <div className="board-container__board-row">
-              {[...Array(row)].map((el, j) => {
+          {[...Array(row)].map((el, i) => {
+            return <div key={`row${i}`} className="board-container__board-row">
+              {[...Array(column)].map((el, j) => {
+                const status = Boolean(safeGet(selectedStates, `${i}.${j}`));
                 return (<Cell
                   key={`${i}${j}`}
                   row={1}
                   column={1}
-                  isLiving={false}
+                  isLiving={status}
                   cellStyle={{}}
-                  onClick={(living) => getMatrixIndexWithStatus(living, i, j)}
+                  onClick={(living) => updateLivingStatus(living, i, j)}
                 />)
               })}
             </div>
           })}
         </div>
       }
-    </div>)}
-  </React.Fragment>
+    </div>
 }

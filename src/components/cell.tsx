@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import classnames from "classnames"
 
-interface CellProps {
+interface ICellProps {
   row: number,
   column: number,
   isLiving: boolean,
@@ -10,7 +10,7 @@ interface CellProps {
 
 }
 
-export const Cell: React.FC<CellProps> = ({ isLiving, onClick }) => {
+export const Cell: React.FC<ICellProps> = ({ isLiving, onClick }) => {
   let [living, setLiving] = useState<boolean>(isLiving);
   let [prevLiving, setPrevLiving] = useState<boolean | null>(null);
 

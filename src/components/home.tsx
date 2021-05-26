@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Cell } from "./cell";
 import TextField from '@material-ui/core/TextField';
-import { Board } from "./board";
+import { PlayArena } from "./playArena";
 
-interface Event {
+interface IEvent {
   target: { value: string }
 }
 
@@ -19,10 +19,10 @@ export const Home: React.FC = () => {
   return (
     <div className="home-container">
       <div className="home-container__custom">
-        <TextField label={"Row"} type={"tel"} value={row} onChange={({ target }: Event) => setRow(getInteger(target.value))} />
-        <TextField label={"Column"} type={"tel"} value={column} onChange={({ target }: Event) => setColumn(getInteger(target.value))} />
+        <TextField label={"Row"} type={"tel"} value={row} onChange={({ target }: IEvent) => setRow(getInteger(target.value))} />
+        <TextField label={"Column"} type={"tel"} value={column} onChange={({ target }: IEvent) => setColumn(getInteger(target.value))} />
       </div>
-      <Board row={row} column={column} />
+      <PlayArena row={row} column={column} />
     </div>
   )
 }
