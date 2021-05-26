@@ -1,7 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { Home } from "./components/home";
+import './index.scss'
 
 ReactDOM.render(
-  <h1>Hello</h1>,
+  <Home/>,
   document.getElementById('root')
 )

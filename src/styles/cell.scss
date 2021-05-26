@@ -1,0 +1,12 @@
+.cell-container {
+  border: 1px solid black;
+  flex: 1;
+  
+  &.living {
+    background-color: yellow;
+  }
+
+  &.dead {
+    background-color: grey;
+  }
+}

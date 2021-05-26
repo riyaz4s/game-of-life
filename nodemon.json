@@ -2,9 +2,9 @@
 
 {
   "watch": ["src", "server"],
-  "ignore": ["src/**/*.test.ts"],
-  "ext": "ts,js,json",
-  "exec": "npm run build:dev && npm run start",
+  "ignore": ["src/**/*.test.ts", "public"],
+  "ext": "tsx,js,json,css,scss",
+  "exec": "rm -rf public/* && npm run build && npm run start",
   "legacyWatch": true,
-  "delay": 1500
+  "delay": 500
 }

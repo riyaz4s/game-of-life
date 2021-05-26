@@ -1,0 +1,18 @@
+.board-container{
+  display: flex;
+  width: 25rem;
+  height: 25rem;
+  margin: 0 auto;
+  flex-wrap: wrap;
+
+  &__board-column {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  &__board-row {
+    display: flex;
+    height: 100%;
+  }
+}
