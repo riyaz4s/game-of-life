@@ -28,5 +28,5 @@ $ npm run start
 Start playing from http://localhost:4001/gol
 ### How to Play
 
-* Toggle between life and dead by clicking the cell
+* Toggle between life and death by clicking the cell
 * Start generation building by using the START button.
