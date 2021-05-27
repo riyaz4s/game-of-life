@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import classnames from "classnames"
 
 interface ICellProps {
@@ -10,18 +10,10 @@ interface ICellProps {
 
 }
 
-export const Cell: React.FC<ICellProps> = ({ isLiving, onClick }) => {
-  let [living, setLiving] = useState<boolean>(isLiving);
-  let [prevLiving, setPrevLiving] = useState<boolean | null>(null);
-
-  if(living !== prevLiving) {
-    setLiving(living);
-    setPrevLiving(living)
-  }
+export const Cell: React.FC<ICellProps> = ({ isLiving: living = false, onClick }) => {
 
   const toggle = () =>  {
     const newStatus = !living;
-    setLiving(newStatus);
     onClick(newStatus);
   }
   return (
