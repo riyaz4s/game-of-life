@@ -13,6 +13,7 @@ const DEFAULT_SPEED = 200;
 export const PlayArena: React.FC<IPlayArenaProps> = ({ row, column }) => {
   const [selectedStates, updateSelectedStates] = useState<IObjectType>({});
   const [isPlaying, updateIsPlaying] = useState<boolean>(false);
+  const [generationCount, updateGenerationCount] = useState<number>(0);
   const [speed, setSpeed] = useState<number>(DEFAULT_SPEED);
   const playingRef: { current: undefined | ReturnType<typeof setTimeout>} = useRef();
   const updateLivingStatus = (living: boolean, i: number, j: number): void => {
@@ -31,6 +32,7 @@ export const PlayArena: React.FC<IPlayArenaProps> = ({ row, column }) => {
   const setMyInterval = (): void => {
     const id = setInterval(() => {
       updateSelectedStates(selectedStates => getNextGeneration(row, column, selectedStates));
+      updateGenerationCount(generationCount => generationCount + 1);
     }, speed);
     playingRef.current = id;
   }
@@ -39,6 +41,7 @@ export const PlayArena: React.FC<IPlayArenaProps> = ({ row, column }) => {
       setMyInterval();
     } else if(!isPlaying) {
       clearMyInterval();
+      updateGenerationCount(0)
     }
     return clearMyInterval
   }, [ isPlaying ])
@@ -67,6 +70,7 @@ export const PlayArena: React.FC<IPlayArenaProps> = ({ row, column }) => {
   return <React.Fragment>
     {!isNaN(column * row) && (<div className="play-arena-container">
       <Board row={row} column={column} updateLivingStatus={updateLivingStatus} selectedStates={selectedStates} />
+      <p className={"play-arena-container__generation"}>Generations: {generationCount}</p>
       <div className={"play-arena-container__controllers"}>
         <Slider
           className={"play-arena-container__controllers__slider"}
